@@ -89,7 +89,7 @@ public class FileStatisticConsoleApp {
 
 	public void handleFile(String filename) {
 		try (FileReader fr = new FileReader(filename);
-				BufferedReader br = new BufferedReader(new FileReader(filename));) {
+				BufferedReader br = new BufferedReader(fr);) {
 			fileStatistic = new FileStatistic(filename);
 
 			String s;

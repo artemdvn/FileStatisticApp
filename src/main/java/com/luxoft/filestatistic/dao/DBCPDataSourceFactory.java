@@ -10,6 +10,9 @@ import org.apache.commons.dbcp.BasicDataSource;
 
 public class DBCPDataSourceFactory {
 	
+	private DBCPDataSourceFactory() {		
+	}
+	
 	public static DataSource getDataSource() {
 		
 		Properties props = new Properties();

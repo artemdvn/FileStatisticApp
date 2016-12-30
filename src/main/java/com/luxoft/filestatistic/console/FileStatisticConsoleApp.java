@@ -16,7 +16,7 @@ import com.luxoft.filestatistic.model.LineOfFile;
 public class FileStatisticConsoleApp {
 
 	private FileStatistic fileStatistic;
-	private List<LineOfFile> linesOfFile = new ArrayList<LineOfFile>();
+	private List<LineOfFile> linesOfFile = new ArrayList<>();
 
 	private int sumWordsOfFileLenght = 0;
 	private int wordsOfFileCount = 0;
@@ -88,18 +88,16 @@ public class FileStatisticConsoleApp {
 	}
 
 	public void handleFile(String filename) {
-		try {
-			BufferedReader br = new BufferedReader(new FileReader(filename));
-			
+		try (FileReader fr = new FileReader(filename);
+				BufferedReader br = new BufferedReader(new FileReader(filename));) {
 			fileStatistic = new FileStatistic(filename);
-			
+
 			String s;
 			int lineCounter = 0;
 			while ((s = br.readLine()) != null) {
 				handleLine(s, lineCounter);
 				lineCounter++;
 			}
-			br.close();
 
 			double averageWordLenghtOfFile = (wordsOfFileCount == 0) ? 0
 					: (double) sumWordsOfFileLenght / (double) wordsOfFileCount;
@@ -126,7 +124,7 @@ public class FileStatisticConsoleApp {
 		int sumWordsLenght = 0;
 		int wordsCount = 0;
 
-		String words[] = str.split(" ");
+		String[] words = str.split(" ");
 		for (String word : words) {
 			int wordLength = word.length();
 

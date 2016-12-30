@@ -34,10 +34,10 @@ public class FileStatisticDaoImpl implements FileStatisticDao{
         return dataSource.getConnection();
     }
 	
+	@Override
 	public Long saveFileStatistic(FileStatistic fs){
 		Connection con = null;
 		PreparedStatement preparedStatement = null;
-        ResultSet resultSet = null;
         Long idInDb = -1L;
         try {
         	
@@ -72,9 +72,6 @@ public class FileStatisticDaoImpl implements FileStatisticDao{
                 if (preparedStatement != null) {
                     preparedStatement.close();
                 }
-                if (resultSet != null) {
-                    resultSet.close();
-                }
                 if (con != null) {
                 	con.close();
                 }
@@ -86,6 +83,7 @@ public class FileStatisticDaoImpl implements FileStatisticDao{
         return idInDb;
 	}
 	
+	@Override
 	public List<FileStatistic> getAllFileStatistic(){
 		List<FileStatistic> fileStatistics = new ArrayList<>();
 		
@@ -135,8 +133,8 @@ public class FileStatisticDaoImpl implements FileStatisticDao{
         
         FileStatistic fs = new FileStatistic(filename);
         fs.setId(id);
-        fs.setShortestWordOfFile(shortestWord);;
-        fs.setLongestWordOfFile(longestWord);;
+        fs.setShortestWordOfFile(shortestWord);
+        fs.setLongestWordOfFile(longestWord);
         fs.setAverageWordLenghtOfFile(averageWordLenght);
         return fs;
     }

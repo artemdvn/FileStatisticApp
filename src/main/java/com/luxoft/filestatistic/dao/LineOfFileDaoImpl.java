@@ -34,10 +34,10 @@ public class LineOfFileDaoImpl implements LineOfFileDao{
         return dataSource.getConnection();
     }
 	
+	@Override
 	public void saveLineOfFile(LineOfFile line, Long fileId){
 		Connection con = null;
 		PreparedStatement preparedStatement = null;
-        ResultSet resultSet = null;
         try {
         	
         	con = getConnection();
@@ -65,9 +65,6 @@ public class LineOfFileDaoImpl implements LineOfFileDao{
                 if (preparedStatement != null) {
                     preparedStatement.close();
                 }
-                if (resultSet != null) {
-                    resultSet.close();
-                }
                 if (con != null) {
                 	con.close();
                 }
@@ -78,6 +75,7 @@ public class LineOfFileDaoImpl implements LineOfFileDao{
         }
 	}
 	
+	@Override
 	public List<LineOfFile> getAllLinesOfFile(FileStatistic fs){
 		List<LineOfFile> lines = new ArrayList<>();
 		
@@ -129,8 +127,8 @@ public class LineOfFileDaoImpl implements LineOfFileDao{
         double averageWordLenght = rs.getDouble("averageWordLenght");
         
         LineOfFile lineOfFile = new LineOfFile(line, lineNumber, fs);
-        lineOfFile.setShortestWord(shortestWord);;
-        lineOfFile.setLongestWord(longestWord);;
+        lineOfFile.setShortestWord(shortestWord);
+        lineOfFile.setLongestWord(longestWord);
         lineOfFile.setAverageWordLenght(averageWordLenght);
         return lineOfFile;
     }

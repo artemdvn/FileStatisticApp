@@ -17,7 +17,7 @@ public class FileStatistic {
 	public FileStatistic(String filename) {
 		this(nextId++);
 		if (nextId == Long.MAX_VALUE) {
-			throw new RuntimeException(String.format("%s has reached maximum ID value. " + "Restart the Application.",
+			throw new RuntimeException(String.format("%s has reached maximum ID value. Restart the Application.",
 					this.getClass().getSimpleName()));
 		}
 		this.filename = filename;
